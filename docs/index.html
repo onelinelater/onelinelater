@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Иван Кузнецов — Senior Python Developer · Backend · агентные системы на LLM</title>
+<meta name="description" content="Backend на Python, агентные системы на LLM · 9+ лет · удалённо">
+<meta property="og:title" content="Иван Кузнецов — Senior Python Developer · Backend · агентные системы на LLM">
+<meta property="og:description" content="Backend на Python, агентные системы на LLM · 9+ лет · удалённо">
+<meta property="og:type" content="profile">
+<meta property="og:image" content="avatar.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f6f8b'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='28' font-weight='600' fill='%23fff' text-anchor='middle'%3EIK%3C/text%3E%3C/svg%3E">
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f7f9fa;
+  --surface: #ffffff;
+  --text: #182026;
+  --muted: #5d6a73;
+  --line: #dde4e8;
+  --accent: #1f6f8b;
+  --accent-soft: #e2f0f4;
+  --code-bg: #eef3f5;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #11161a;
+    --surface: #182027;
+    --text: #e4eaee;
+    --muted: #93a1aa;
+    --line: #26323a;
+    --accent: #5fb7d4;
+    --accent-soft: #1b2e36;
+    --code-bg: #1a242b;
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: .7rem clamp(1rem, 4vw, 3rem);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.brand { font-weight: 600; }
+.brand span { color: var(--muted); font-weight: 400; }
+.switch { display: flex; gap: .2rem; padding: .2rem; background: var(--code-bg); border-radius: 999px; }
+.switch button {
+  border: 0; cursor: pointer; font: inherit; font-size: .9rem; font-weight: 600;
+  padding: .35rem .95rem; border-radius: 999px; color: var(--muted); background: transparent;
+}
+.switch button[aria-pressed="true"] { background: var(--surface); color: var(--accent); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+.switch button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+main { max-width: 62rem; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 3rem) 2rem; }
+.page[hidden] { display: none; }
+.hero {
+  display: flex; gap: clamp(1rem, 4vw, 2rem); align-items: center;
+  padding: clamp(2rem, 6vw, 3.5rem) 0 1.5rem; border-bottom: 1px solid var(--line);
+}
+.avatar {
+  flex: none; width: clamp(88px, 18vw, 132px); height: auto; aspect-ratio: 1;
+  border-radius: 50%; object-fit: cover; border: 3px solid var(--surface);
+  box-shadow: 0 0 0 1px var(--line), 0 6px 20px rgba(0,0,0,.08);
+}
+.hero h1 {
+  margin: 0; font-size: clamp(1.9rem, 6vw, 3rem); line-height: 1.1; letter-spacing: -.02em;
+  font-family: "Iowan Old Style", Georgia, "Times New Roman", serif; font-weight: 600;
+}
+.headline { margin: .6rem 0 0; font-size: clamp(1rem, 2.6vw, 1.2rem); color: var(--accent); font-weight: 600; }
+.tagline { margin: .4rem 0 0; color: var(--muted); }
+.contacts { list-style: none; display: flex; flex-wrap: wrap; gap: .3rem 1.4rem; margin: 1rem 0 0; padding: 0; font-size: .95rem; }
+.contacts .k { color: var(--muted); margin-right: .4rem; }
+.contacts a { color: var(--text); text-decoration-color: var(--line); text-underline-offset: 3px; }
+.contacts a:hover { color: var(--accent); }
+.sections {
+  display: flex; gap: 1rem; overflow-x: auto; padding: .9rem 0; margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line); font-size: .875rem; scrollbar-width: none;
+}
+.sections::-webkit-scrollbar { display: none; }
+.sections a { color: var(--muted); text-decoration: none; white-space: nowrap; }
+.sections a:hover { color: var(--accent); }
+.resume h2 {
+  margin: 2.6rem 0 1rem; padding-top: 1.4rem; border-top: 1px solid var(--line);
+  font-family: "Iowan Old Style", Georgia, serif; font-size: 1.5rem; letter-spacing: -.01em;
+}
+.resume > h2:first-child { margin-top: .8rem; padding-top: 0; border-top: 0; }
+.resume h3 { margin: 2rem 0 .3rem; font-size: 1.15rem; }
+.resume h3 + p { margin-top: 0; color: var(--muted); font-size: .95rem; }
+.resume ul { padding-left: 1.2rem; }
+.resume li { margin: .35rem 0; }
+.resume a { color: var(--accent); text-underline-offset: 2px; }
+.resume table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .95rem; display: block; overflow-x: auto; }
+.resume th, .resume td { border: 1px solid var(--line); padding: .5rem .7rem; text-align: left; }
+.resume th { background: var(--code-bg); }
+.resume pre {
+  background: var(--code-bg); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 1rem; overflow-x: auto; font-size: .85rem; line-height: 1.5;
+}
+.resume :not(pre) > code {
+  background: var(--accent-soft); color: var(--accent); padding: .12em .4em;
+  border-radius: 5px; font-size: .85em;
+}
+/* Линии из markdown не нужны: разделы уже отбиты линией у h2. */
+.resume hr { display: none; }
+footer { margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
+footer a { color: inherit; }
+@media (max-width: 640px) {
+  .hero { flex-direction: column; align-items: flex-start; }
+  .resume pre { font-size: .72rem; }
+}
+@media print {
+  .topbar, .sections, footer { display: none; }
+  body { background: #fff; color: #000; font-size: 10.5pt; }
+  .resume pre { background: #f6f6f6; }
+  .resume h2 { page-break-after: avoid; }
+  .resume li, .resume h3 { page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><span class="brand-name">Иван Кузнецов</span> <span>· CV</span></div>
+  <div class="switch" role="group" aria-label="Language / Язык">
+    <button type="button" data-lang="ru" aria-pressed="true">RU</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </div>
+</div>
+<main>
+<section class="page" data-lang="ru" lang="ru">
+  <header class="hero">
+    <img class="avatar" src="avatar.jpg" alt="Иван Кузнецов" width="132" height="132">
+    <div>
+      <h1>Иван Кузнецов</h1>
+      <p class="headline">Senior Python Developer · Backend · агентные системы на LLM</p>
+      <p class="tagline">Backend на Python, агентные системы на LLM · 9+ лет · удалённо</p>
+      <ul class="contacts">
+<li><span class="k">Email</span><a href="mailto:onelinelater@gmail.com">onelinelater@gmail.com</a></li>
+<li><span class="k">Telegram</span><a href="https://t.me/onelinelater">@onelinelater</a></li>
+<li><span class="k">GitHub</span><a href="https://github.com/onelinelater">onelinelater</a></li>
+<li><span class="k">GitLab</span><a href="https://gitlab.com/onelinelater">onelinelater</a></li>
+<li><span class="k">Город</span>Хабаровск · remote</li>
+      </ul>
+    </div>
+  </header>
+  <nav class="sections" aria-label="Разделы">
+<a href="#статистика">Статистика</a>
+<a href="#профессиональный-профиль">Профессиональный профиль</a>
+<a href="#технический-стек">Технический стек</a>
+<a href="#опыт-работы">Опыт работы</a>
+<a href="#проекты-на-заказ-онлайн-школа-хакер-егэ">Проекты на заказ</a>
+<a href="#собственные-проекты">Собственные проекты</a>
+<a href="#образование">Образование</a>
+<a href="#языки">Языки</a>
+<a href="#дополнительно">Дополнительно</a>
+<a href="#контакты">Контакты</a>
+  </nav>
+  <article class="resume">
+<h2 id="статистика">📊 Статистика</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">🏆 Опыт</th>
+<th style="text-align: center;">🏢 Компании</th>
+<th style="text-align: center;">🧩 Своя платформа</th>
+<th style="text-align: center;">💎 Уровень</th>
+<th style="text-align: center;">💰 Ожидания</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>9+ лет</strong></td>
+<td style="text-align: center;">KPMG · БСТ · БАРС Груп · Navio</td>
+<td style="text-align: center;"><strong>14 сервисов · 1000+ коммитов</strong></td>
+<td style="text-align: center;"><strong>Senior</strong></td>
+<td style="text-align: center;"><strong>300 000 ₽/мес</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="профессиональный-профиль">👨‍💻 Профессиональный профиль</h2>
+<p><strong>Python-разработчик</strong> с 2017 года: прошёл путь от Junior на Node.js до Senior, который ведёт ревью, собеседует разработчиков и в одиночку закрывает backend клиентского проекта.</p>
+<p><strong>Backend</strong> — основная специализация: FastAPI, Flask, Django, aiohttp, Tornado. Событийная обработка на Kafka и RabbitMQ (FastStream, pika), устойчивые длительные процессы и Saga на Temporal. PostgreSQL на уровне планов запросов: <code>EXPLAIN ANALYZE</code>, индексы, а в своих проектах — <code>LISTEN/NOTIFY</code> и очереди на <code>SKIP LOCKED</code>.</p>
+<p><strong>Качество</strong>: тесты на критичные модули, Repository и чистая архитектура там, где они окупаются, SonarQube и ревью.</p>
+<p><strong>FullStack</strong> — продукт целиком в одних руках: Vue 3, Angular, React, Nuxt на фронте; сервисы на Node.js (Express, Sequelize); один и тот же продукт — веб, десктоп на Electron и Android на Capacitor.</p>
+<p><strong>Агентные системы на LLM</strong> — направление, в котором живу последние месяцы: построил платформу, где Claude и Codex берут задачи из трекера, пишут код в отдельных копиях репозитория, ревьюят друг друга и отчитываются на телефон.</p>
+<p>Открыт к позициям: <strong>Senior Python / Backend Developer · Platform Engineer · AI / LLM Engineer (агенты, оркестрация)</strong></p>
+<hr />
+<h2 id="технический-стек">🛠 Технический стек</h2>
+<h3 id="backend">Backend</h3>
+<pre><code>Python            ●●●●●  FastAPI · Flask · Django / DRF · aiohttp · Tornado · asyncio · Pydantic 2
+ORM и миграции    ●●●●○  SQLAlchemy (в т.ч. async) · Alembic · asyncpg · паттерн Repository
+Событийность      ●●●●○  Apache Kafka · RabbitMQ · FastStream · pika · Celery
+Долгие процессы   ●●●○○  Temporal / temporalio — Saga, повторы, промежуточные состояния
+Авторизация       ●●●○○  JWT · RBAC · права в профиле пользователя
+ЭП                ●●●○○  КриптоПро · CAdES — сервис проверки подписи под ключ
+Go                ●●●○○  агент машины: узлы сети, обратный канал, выкатка с откатом, AAR для Android
+</code></pre>
+<h3 id="frontend">Frontend</h3>
+<pre><code>Vue 3             ●●●●○  Composition API · Vue Router · Vuex · Nuxt
+Angular           ●●●○○  клиентские модули корпоративных систем
+React             ●●●○○  SPA поверх собственных API
+Node.js           ●●●○○  Express · Sequelize
+Десктоп и мобайл  ●●●○○  Electron + SQLite · Capacitor (Android) — офлайн-версии веб-продукта
+</code></pre>
+<h3 id="базы-данных-и-хранилища">Базы данных и хранилища</h3>
+<pre><code>PostgreSQL        ●●●●●  EXPLAIN / ANALYZE · индексы · транзакции · LISTEN/NOTIFY · SKIP LOCKED
+Redis             ●●●○○  кэш · fastapi-cache
+MongoDB / NoSQL   ●●●○○
+MinIO (S3)        ●●●●○  хранение файлов и фото
+ClickHouse        ●●○○○
+</code></pre>
+<h3 id="devops-и-наблюдаемость">DevOps и наблюдаемость</h3>
+<pre><code>Docker            ●●●●○  Docker Compose · многоконтейнерные окружения · Astra Linux 1.8
+CI/CD             ●●●●○  GitLab CI · собственный раннер · выпуск сборок с sha256 и докачкой
+Мониторинг        ●●●○○  Prometheus · Grafana · Loki · Sentry
+ETL               ●●○○○  Airflow
+</code></pre>
+<h3 id="ai-llm">AI / LLM</h3>
+<pre><code>Агенты            ●●●●○  Claude Code · Codex · локальный Qwen — оркестрация, ревью агентом агента
+MCP               ●●●●○  свой MCP-сервер трекера задач, скиллы для агентов
+Речь              ●●●○○  faster-whisper на CUDA · стенограмма созвона в реальном времени
+</code></pre>
+<p><code>Git</code> <code>pytest</code> <code>Ruff</code> <code>MyPy</code> <code>uv</code> <code>Poetry</code> <code>SonarQube</code> <code>Jira</code> <code>Confluence</code> <code>Redmine</code></p>
+<hr />
+<h2 id="опыт-работы">💼 Опыт работы</h2>
+<h3 id="istaff-it-navio-python-разработчик">🟡 iStaff-IT / Navio — Python-разработчик</h3>
+<p><strong>Октябрь 2025 — Декабрь 2025</strong> · <em>Логистика / микросервисы</em></p>
+<ul>
+<li>🧭 <strong>Спроектировал и реализовал Saga-процесс на Temporal</strong>: длительный бизнес-процесс с промежуточными состояниями, повторными попытками и обработкой ошибок</li>
+<li>🧱 <strong>Написал переиспользуемый Repository</strong>, который стандартизировал работу с данными и упростил типовые операции во всех сервисах</li>
+<li>📨 <strong>Строил событийные интеграции</strong> между сервисами на Apache Kafka и FastStream</li>
+<li>⚡ Развивал асинхронные сервисы на FastAPI и REST API для клиентов и внутренних интеграций</li>
+</ul>
+<p><code>Python</code> <code>FastAPI</code> <code>Kafka</code> <code>FastStream</code> <code>Temporal</code> <code>PostgreSQL</code></p>
+<h3 id="бизнес-система-телеком-senior-web-developer-python-javascript">🟢 Бизнес Система Телеком — Senior Web Developer (Python + JavaScript)</h3>
+<p><strong>Май 2024 — Октябрь 2025</strong></p>
+<ul>
+<li>🛡 <strong>Спроектировал и реализовал сервис проверки электронной подписи</strong> на КриптоПро и CAdES целиком: backend, frontend, интеграция с веб-приложением, асинхронная обработка проверок, мониторинг</li>
+<li>🧯 <strong>Единственным backend-разработчиком принял клиентский проект</strong> после ухода предыдущего исполнителя, реализовал оставшиеся требования и сдал без технического долга</li>
+<li>🐍 Развивал сервисы на Tornado, Flask, aiohttp и FastAPI; клиентские модули на Vue 3 и Angular; сервисы на Node.js (Express, Sequelize)</li>
+<li>🚀 Настроил сборку и выкатку через Docker и GitLab CI, включая окружения под Astra Linux 1.8</li>
+<li>📈 Внедрил мониторинг на Loki, Prometheus, Grafana и Sentry</li>
+</ul>
+<p><code>Python</code> <code>Tornado</code> <code>Flask</code> <code>FastAPI</code> <code>Vue 3</code> <code>Angular</code> <code>Node.js</code> <code>КриптоПро</code> <code>Docker</code> <code>GitLab CI</code></p>
+<h3 id="kpmg-senior-web-developer-python-javascript">🔵 KPMG — Senior Web Developer (Python + JavaScript)</h3>
+<p><strong>Сентябрь 2021 — Май 2024</strong> · <em>Middle → Senior с июля 2023</em></p>
+<ul>
+<li>👥 <strong>Организовывал работу команды</strong>, ревьюил код и проводил собеседования с разработчиками</li>
+<li>🐍 Разрабатывал микросервисы на Flask с обменом через RabbitMQ, фронтенд на Angular</li>
+<li>🔍 <strong>Оптимизировал и рефакторил</strong>: SonarQube, планы запросов PostgreSQL (<code>EXPLAIN</code>, <code>ANALYZE</code>), чистая архитектура</li>
+<li>🔄 Работал с ETL на Airflow</li>
+</ul>
+<p><code>Python</code> <code>Flask</code> <code>RabbitMQ</code> <code>Angular</code> <code>PostgreSQL</code> <code>Airflow</code> <code>SonarQube</code></p>
+<h3 id="барс-груп-middle-web-developer-python-javascript">🟣 БАРС Груп — Middle Web Developer (Python + JavaScript)</h3>
+<p><strong>Август 2020 — Сентябрь 2021</strong></p>
+<ul>
+<li>Веб-приложения на Django + PostgreSQL, плагины интеграции с внешними системами по REST</li>
+</ul>
+<h3 id="fogstream-junior-web-developer-python">⚪ Fogstream — Junior Web Developer (Python)</h3>
+<p><strong>Март 2019 — Август 2020</strong></p>
+<ul>
+<li>Django, REST-микросервисы, unit-тесты, оптимизация запросов PostgreSQL, фронтенд на ExtJS и Marionette</li>
+</ul>
+<h3 id="ион-дв-junior-web-developer-nodejs">⚪ ИОН-ДВ — Junior Web Developer (Node.js)</h3>
+<p><strong>Апрель 2017 — Февраль 2019</strong></p>
+<ul>
+<li>Веб-приложения на Node.js, десктоп на Electron, SOAP и REST сервисы, e2e-тесты на Selenium</li>
+</ul>
+<hr />
+<h2 id="проекты-на-заказ-онлайн-школа-хакер-егэ">🤝 Проекты на заказ — онлайн-школа «Хакер ЕГЭ»</h2>
+<p>Весь цикл в одних руках: требования, архитектура, backend, frontend, сборка и выкатка.</p>
+<h3 id="crm-поверх-alfacrm-production">📇 CRM поверх AlfaCRM · <code>production</code></h3>
+<p><em>Python · FastAPI · Vue · RabbitMQ · Redis · PostgreSQL</em></p>
+<ul>
+<li><strong>291 коммит за год</strong>: backend на FastAPI, frontend на Vue, отдельные сервисы планировщика и рассыльщика</li>
+<li><strong>Напоминания об оплате и отложенные сообщения</strong> ученикам — по расписанию, с предпросмотром текста</li>
+<li><strong>Аналитика по ученикам и деньгам</strong>: графики, календарь с отмеченными уроками</li>
+<li>Переработанный RBAC с правами в профиле, раздельные фильтры, устойчивое подключение к RabbitMQ, CI</li>
+</ul>
+<p><code>Python</code> <code>FastAPI</code> <code>SQLAlchemy</code> <code>Alembic</code> <code>httpx</code> <code>Vue</code> <code>RabbitMQ</code> <code>Redis</code> <code>Docker</code></p>
+<h3 id="тренажёр-егэ-по-математике-web-desktop-android">📐 Тренажёр ЕГЭ по математике · <code>web · desktop · android</code></h3>
+<p><em>Python · FastAPI · Vue 3 · TypeScript · Electron · Capacitor</em></p>
+<ul>
+<li><strong>Один продукт — три платформы</strong>: веб на FastAPI + PostgreSQL, портативные десктоп-приложения на Electron со встроенной SQLite, офлайн-APK на Capacitor</li>
+<li><strong>Отдельная админка для методистов</strong>: редактор источника заданий; при сохранении backend пересобирает темы, блоки и задачи для клиентов</li>
+<li><strong>Свой блочный редактор</strong> отдельным пакетом</li>
+<li>Структура разделы → темы → типы заданий; Vue 3 + Vite + Tailwind + Pinia по FSD, схема БД на Alembic, сид из снапшота тем же механизмом, что импорт в админке</li>
+<li>Отдельный сервис сбора публичной структуры источников для подготовки контента</li>
+</ul>
+<p><code>Python</code> <code>FastAPI</code> <code>PostgreSQL</code> <code>Vue 3</code> <code>TypeScript</code> <code>Tailwind</code> <code>Pinia</code> <code>Electron</code> <code>SQLite</code> <code>Capacitor</code></p>
+<hr />
+<h2 id="собственные-проекты">🚀 Собственные проекты</h2>
+<h3 id="argus-платформа-для-своих-машин-телефона-и-ии-агентов-pet-в-ежедневной-работе">🛰 Argus — платформа для своих машин, телефона и ИИ-агентов · <code>pet · в ежедневной работе</code></h3>
+<p><em>Python · Go · Java (Android) · PostgreSQL · FastAPI · GitLab CI</em></p>
+<p>Своя распределённая система, в которой работаю каждый день: <strong>14 сервисов, 1000+ коммитов с августа 2026</strong>. Отвечаю за всё — от схемы данных до выкатки на узлы и телефон.</p>
+<ul>
+<li>🧭 <strong>Мастер парка</strong>: реестр узлов, обратные каналы, CLI <code>svc</code> — поднять сервис на удалённой машине, прочитать логи, выполнить команду, выкатить сборку</li>
+<li>🐹 <strong>Агент машины на Go</strong>: сам находит мастера в локальной сети; выкатка, при которой прежняя сборка уходит только после того, как встала новая</li>
+<li>📱 <strong>Нативное Android-приложение</strong> (Java, без WebView): телефон — полноценный узел сети, консоль удалённой машины с <code>vim</code> и <code>htop</code></li>
+<li>🤖 <strong>Оркестратор агентов</strong>: задачи спринта из трекера раздаются Claude и Codex, приёмка, ревью вторым агентом, мерж принятого</li>
+<li>📋 <strong>Трекер задач для людей и агентов</strong>: REST, CLI и MCP над одним сервисным слоем; трудозатраты в минутах у человека и в токенах у агента</li>
+<li>⏰ <strong>Отложенные задачи и пайплайны</strong>: очередь на Postgres с <code>SKIP LOCKED</code> и арендой, cron, графы шагов с подтверждением с телефона</li>
+<li>🎙 <strong>Речь</strong>: faster-whisper на CUDA, стенограмма созвона по двум дорожкам, расшифровка видео через RabbitMQ</li>
+</ul>
+<p><code>Python</code> <code>FastAPI</code> <code>PostgreSQL</code> <code>Go</code> <code>Java</code> <code>Android</code> <code>RabbitMQ</code> <code>MCP</code> <code>Claude</code> <code>Codex</code> <code>faster-whisper</code></p>
+<h3 id="конструктор-документов-pet">📄 Конструктор документов · <code>pet</code></h3>
+<p><em>Python · FastAPI · Vue · PDF</em></p>
+<ul>
+<li>Редактор шаблонов с подстановкой переменных и режимом предпросмотра, свой DSL, отдельный воркер сборки PDF, CRM-часть</li>
+</ul>
+<p><code>Python</code> <code>FastAPI</code> <code>Vue</code> <code>MinIO</code> <code>PDF</code></p>
+<h3 id="vitawalls-управление-зонами-озеленения-pet">🌿 Vitawalls — управление зонами озеленения · <code>pet</code></h3>
+<p><em>Python · FastAPI · Vue · IoT</em></p>
+<ul>
+<li>Организации, пользователи и зоны; привязка устройств и сенсоров, хранение измерений, панель администрирования, e2e-тесты</li>
+</ul>
+<p><code>Python</code> <code>FastAPI</code> <code>PostgreSQL</code> <code>MinIO</code> <code>Docker</code></p>
+<hr />
+<h2 id="образование">🎓 Образование</h2>
+<table>
+<thead>
+<tr>
+<th>Год</th>
+<th>Учебное заведение</th>
+<th>Специальность</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2018</td>
+<td>Тихоокеанский государственный университет, Хабаровск</td>
+<td>Программное обеспечение вычислительной техники и автоматизированных систем (неоконченное высшее)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="языки">🌍 Языки</h2>
+<p>🇷🇺 <strong>Русский</strong> — родной  ·  🇬🇧 <strong>English</strong> — B2</p>
+<hr />
+<h2 id="дополнительно">🔎 Дополнительно</h2>
+<p><strong>Преподаю</strong>: занятия по Python, Django, FastAPI, SQL и алгоритмам — умею объяснить ООП на стульях и столах.</p>
+<p><strong>Форматы работы:</strong> Remote · командировки иногда</p>
+<hr />
+<h2 id="контакты">📞 Контакты</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Email</strong></td>
+<td><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#110;&#101;&#108;&#105;&#110;&#101;&#108;&#97;&#116;&#101;&#114;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#111;&#110;&#101;&#108;&#105;&#110;&#101;&#108;&#97;&#116;&#101;&#114;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></td>
+</tr>
+<tr>
+<td><strong>Telegram</strong></td>
+<td><a href="https://t.me/onelinelater">@onelinelater</a></td>
+</tr>
+<tr>
+<td><strong>GitHub</strong></td>
+<td><a href="https://github.com/onelinelater">github.com/onelinelater</a></td>
+</tr>
+<tr>
+<td><strong>GitLab</strong></td>
+<td><a href="https://gitlab.com/onelinelater">gitlab.com/onelinelater</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Резюме обновлено: Октябрь 2026</em></p>
+  </article>
+  <footer>Сайт собран из README профиля · <a href="https://github.com/onelinelater/onelinelater">github.com/onelinelater/onelinelater</a></footer>
+</section>
+<section class="page" data-lang="en" lang="en" hidden>
+  <header class="hero">
+    <img class="avatar" src="avatar.jpg" alt="Ivan Kuznetsov" width="132" height="132">
+    <div>
+      <h1>Ivan Kuznetsov</h1>
+      <p class="headline">Senior Python Developer · Backend · LLM agent systems</p>
+      <p class="tagline">Python backend, LLM agent systems · 9+ years · remote</p>
+      <ul class="contacts">
+<li><span class="k">Email</span><a href="mailto:onelinelater@gmail.com">onelinelater@gmail.com</a></li>
+<li><span class="k">Telegram</span><a href="https://t.me/onelinelater">@onelinelater</a></li>
+<li><span class="k">GitHub</span><a href="https://github.com/onelinelater">onelinelater</a></li>
+<li><span class="k">GitLab</span><a href="https://gitlab.com/onelinelater">onelinelater</a></li>
+<li><span class="k">Location</span>Khabarovsk · remote</li>
+      </ul>
+    </div>
+  </header>
+  <nav class="sections" aria-label="Sections">
+<a href="#at-a-glance">At a glance</a>
+<a href="#profile">Profile</a>
+<a href="#tech-stack">Tech stack</a>
+<a href="#experience">Experience</a>
+<a href="#client-work-hacker-ege-online-school">Client work</a>
+<a href="#own-projects">Own projects</a>
+<a href="#education">Education</a>
+<a href="#languages">Languages</a>
+<a href="#more">More</a>
+<a href="#contacts">Contacts</a>
+  </nav>
+  <article class="resume">
+<h2 id="at-a-glance">📊 At a glance</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">🏆 Experience</th>
+<th style="text-align: center;">🏢 Companies</th>
+<th style="text-align: center;">🧩 Own platform</th>
+<th style="text-align: center;">💎 Level</th>
+<th style="text-align: center;">💰 Expectations</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>9+ years</strong></td>
+<td style="text-align: center;">KPMG · BST · BARS Group · Navio</td>
+<td style="text-align: center;"><strong>14 services · 1000+ commits</strong></td>
+<td style="text-align: center;"><strong>Senior</strong></td>
+<td style="text-align: center;"><strong>300,000 ₽/month</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="profile">👨‍💻 Profile</h2>
+<p><strong>Python developer</strong> since 2017: grew from a Junior on Node.js to a Senior who runs code review, interviews developers and single-handedly carries the backend of a client project.</p>
+<p><strong>Backend</strong> is my core: FastAPI, Flask, Django, aiohttp, Tornado. Event-driven processing on Kafka and RabbitMQ (FastStream, pika), durable long-running processes and Sagas on Temporal. PostgreSQL down to query plans: <code>EXPLAIN ANALYZE</code>, indexes, and in my own projects <code>LISTEN/NOTIFY</code> and <code>SKIP LOCKED</code> job queues.</p>
+<p><strong>Quality</strong>: tests on critical modules, Repository and clean architecture where they pay off, SonarQube and code review.</p>
+<p><strong>Full-stack</strong> — a whole product in one pair of hands: Vue 3, Angular, React, Nuxt on the front; Node.js services (Express, Sequelize); one product shipped as web, Electron desktop and Android via Capacitor.</p>
+<p><strong>LLM agent systems</strong> — where I've been living lately: I built a platform where Claude and Codex pick up tasks from a tracker, write code in separate repository copies, review each other and report to my phone.</p>
+<p>Open to: <strong>Senior Python / Backend Developer · Platform Engineer · AI / LLM Engineer (agents, orchestration)</strong></p>
+<hr />
+<h2 id="tech-stack">🛠 Tech stack</h2>
+<h3 id="backend">Backend</h3>
+<pre><code>Python            ●●●●●  FastAPI · Flask · Django / DRF · aiohttp · Tornado · asyncio · Pydantic 2
+ORM &amp; migrations  ●●●●○  SQLAlchemy (incl. async) · Alembic · asyncpg · Repository pattern
+Messaging         ●●●●○  Apache Kafka · RabbitMQ · FastStream · pika · Celery
+Long processes    ●●●○○  Temporal / temporalio — Sagas, retries, intermediate states
+Auth              ●●●○○  JWT · RBAC · per-user permissions
+E-signatures      ●●●○○  CryptoPro · CAdES — a signature verification service end to end
+Go                ●●●○○  machine agent: network nodes, reverse channel, rollout with rollback, AAR for Android
+</code></pre>
+<h3 id="frontend">Frontend</h3>
+<pre><code>Vue 3             ●●●●○  Composition API · Vue Router · Vuex · Nuxt
+Angular           ●●●○○  client modules for enterprise systems
+React             ●●●○○  SPAs on top of my own APIs
+Node.js           ●●●○○  Express · Sequelize
+Desktop &amp; mobile  ●●●○○  Electron + SQLite · Capacitor (Android) — offline builds of a web product
+</code></pre>
+<h3 id="databases-storage">Databases &amp; storage</h3>
+<pre><code>PostgreSQL        ●●●●●  EXPLAIN / ANALYZE · indexes · transactions · LISTEN/NOTIFY · SKIP LOCKED
+Redis             ●●●○○  caching · fastapi-cache
+MongoDB / NoSQL   ●●●○○
+MinIO (S3)        ●●●●○  file and photo storage
+ClickHouse        ●●○○○
+</code></pre>
+<h3 id="devops-observability">DevOps &amp; observability</h3>
+<pre><code>Docker            ●●●●○  Docker Compose · multi-container environments · Astra Linux 1.8
+CI/CD             ●●●●○  GitLab CI · self-hosted runner · build releases with sha256 and resumable download
+Monitoring        ●●●○○  Prometheus · Grafana · Loki · Sentry
+ETL               ●●○○○  Airflow
+</code></pre>
+<h3 id="ai-llm">AI / LLM</h3>
+<pre><code>Agents            ●●●●○  Claude Code · Codex · local Qwen — orchestration, agent-to-agent review
+MCP               ●●●●○  my own MCP server for a task tracker, agent skills
+Speech            ●●●○○  faster-whisper on CUDA · real-time call transcription
+</code></pre>
+<p><code>Git</code> <code>pytest</code> <code>Ruff</code> <code>MyPy</code> <code>uv</code> <code>Poetry</code> <code>SonarQube</code> <code>Jira</code> <code>Confluence</code> <code>Redmine</code></p>
+<hr />
+<h2 id="experience">💼 Experience</h2>
+<h3 id="istaff-it-navio-python-developer">🟡 iStaff-IT / Navio — Python Developer</h3>
+<p><strong>October 2025 — December 2025</strong> · <em>Logistics / microservices</em></p>
+<ul>
+<li>🧭 <strong>Designed and built a Saga process on Temporal</strong>: a long-running business process with intermediate states, retries and error handling</li>
+<li>🧱 <strong>Wrote a reusable Repository</strong> that standardized data access and simplified routine operations across services</li>
+<li>📨 <strong>Built event-driven integrations</strong> between services on Apache Kafka and FastStream</li>
+<li>⚡ Developed async FastAPI services and REST APIs for clients and internal integrations</li>
+</ul>
+<p><code>Python</code> <code>FastAPI</code> <code>Kafka</code> <code>FastStream</code> <code>Temporal</code> <code>PostgreSQL</code></p>
+<h3 id="business-system-telecom-senior-web-developer-python-javascript">🟢 Business System Telecom — Senior Web Developer (Python + JavaScript)</h3>
+<p><strong>May 2024 — October 2025</strong></p>
+<ul>
+<li>🛡 <strong>Designed and built an electronic signature verification service</strong> on CryptoPro and CAdES end to end: backend, frontend, web app integration, async verification, monitoring</li>
+<li>🧯 <strong>As the sole backend developer, took over a client project</strong> after the previous contractor left, delivered the remaining requirements and handed it over with no technical debt</li>
+<li>🐍 Developed services on Tornado, Flask, aiohttp and FastAPI; client modules on Vue 3 and Angular; Node.js services (Express, Sequelize)</li>
+<li>🚀 Set up builds and deployment with Docker and GitLab CI, including Astra Linux 1.8 environments</li>
+<li>📈 Introduced monitoring with Loki, Prometheus, Grafana and Sentry</li>
+</ul>
+<p><code>Python</code> <code>Tornado</code> <code>Flask</code> <code>FastAPI</code> <code>Vue 3</code> <code>Angular</code> <code>Node.js</code> <code>CryptoPro</code> <code>Docker</code> <code>GitLab CI</code></p>
+<h3 id="kpmg-senior-web-developer-python-javascript">🔵 KPMG — Senior Web Developer (Python + JavaScript)</h3>
+<p><strong>September 2021 — May 2024</strong> · <em>Middle → Senior since July 2023</em></p>
+<ul>
+<li>👥 <strong>Organized the team's work</strong>, reviewed code and interviewed developers</li>
+<li>🐍 Built Flask microservices communicating over RabbitMQ, frontend on Angular</li>
+<li>🔍 <strong>Optimized and refactored</strong>: SonarQube, PostgreSQL query plans (<code>EXPLAIN</code>, <code>ANALYZE</code>), clean architecture</li>
+<li>🔄 Worked with ETL on Airflow</li>
+</ul>
+<p><code>Python</code> <code>Flask</code> <code>RabbitMQ</code> <code>Angular</code> <code>PostgreSQL</code> <code>Airflow</code> <code>SonarQube</code></p>
+<h3 id="bars-group-middle-web-developer-python-javascript">🟣 BARS Group — Middle Web Developer (Python + JavaScript)</h3>
+<p><strong>August 2020 — September 2021</strong></p>
+<ul>
+<li>Web applications on Django + PostgreSQL, REST integration plugins for external systems</li>
+</ul>
+<h3 id="fogstream-junior-web-developer-python">⚪ Fogstream — Junior Web Developer (Python)</h3>
+<p><strong>March 2019 — August 2020</strong></p>
+<ul>
+<li>Django, REST microservices, unit tests, PostgreSQL query optimization, frontend on ExtJS and Marionette</li>
+</ul>
+<h3 id="ion-dv-junior-web-developer-nodejs">⚪ ION-DV — Junior Web Developer (Node.js)</h3>
+<p><strong>April 2017 — February 2019</strong></p>
+<ul>
+<li>Node.js web applications, Electron desktop apps, SOAP and REST services, e2e tests with Selenium</li>
+</ul>
+<hr />
+<h2 id="client-work-hacker-ege-online-school">🤝 Client work — Hacker EGE online school</h2>
+<p>The whole cycle in one pair of hands: requirements, architecture, backend, frontend, builds and deployment.</p>
+<h3 id="crm-on-top-of-alfacrm-production">📇 CRM on top of AlfaCRM · <code>production</code></h3>
+<p><em>Python · FastAPI · Vue · RabbitMQ · Redis · PostgreSQL</em></p>
+<ul>
+<li><strong>291 commits in a year</strong>: FastAPI backend, Vue frontend, separate scheduler and notifier services</li>
+<li><strong>Payment reminders and scheduled messages</strong> to students, with message preview</li>
+<li><strong>Analytics on students and revenue</strong>: charts, a calendar with attended lessons</li>
+<li>Reworked RBAC with permissions in the user profile, split filters, resilient RabbitMQ connection, CI</li>
+</ul>
+<p><code>Python</code> <code>FastAPI</code> <code>SQLAlchemy</code> <code>Alembic</code> <code>httpx</code> <code>Vue</code> <code>RabbitMQ</code> <code>Redis</code> <code>Docker</code></p>
+<h3 id="math-exam-trainer-russian-ege-web-desktop-android">📐 Math exam trainer (Russian EGE) · <code>web · desktop · android</code></h3>
+<p><em>Python · FastAPI · Vue 3 · TypeScript · Electron · Capacitor</em></p>
+<ul>
+<li><strong>One product, three platforms</strong>: web on FastAPI + PostgreSQL, portable Electron desktop apps with embedded SQLite, an offline APK via Capacitor</li>
+<li><strong>Separate admin app for content authors</strong>: an editor for the task source; on save the backend rebuilds topics, blocks and tasks for clients</li>
+<li><strong>Custom block editor</strong> as a standalone package</li>
+<li>Sections → topics → task types; Vue 3 + Vite + Tailwind + Pinia following FSD, Alembic-managed schema, seeding from a snapshot through the same path as the admin import</li>
+<li>A separate service that collects the public structure of sources for content preparation</li>
+</ul>
+<p><code>Python</code> <code>FastAPI</code> <code>PostgreSQL</code> <code>Vue 3</code> <code>TypeScript</code> <code>Tailwind</code> <code>Pinia</code> <code>Electron</code> <code>SQLite</code> <code>Capacitor</code></p>
+<hr />
+<h2 id="own-projects">🚀 Own projects</h2>
+<h3 id="argus-a-platform-for-my-machines-phone-and-ai-agents-pet-used-daily">🛰 Argus — a platform for my machines, phone and AI agents · <code>pet · used daily</code></h3>
+<p><em>Python · Go · Java (Android) · PostgreSQL · FastAPI · GitLab CI</em></p>
+<p>My own distributed system that I work in every day: <strong>14 services, 1000+ commits since August 2026</strong>. I own all of it — from the data schema to rollouts on nodes and the phone.</p>
+<ul>
+<li>🧭 <strong>Fleet master</strong>: node registry, reverse channels, the <code>svc</code> CLI — start a service on a remote machine, read its logs, run a command, roll out a build</li>
+<li>🐹 <strong>Machine agent in Go</strong>: discovers the master on the local network by itself; rollouts where the old build goes away only after the new one is up</li>
+<li>📱 <strong>Native Android app</strong> (Java, no WebView): the phone is a full network node, with a remote machine console running <code>vim</code> and <code>htop</code></li>
+<li>🤖 <strong>Agent orchestrator</strong>: sprint tasks from the tracker go to Claude and Codex, then acceptance checks, review by a second agent, merge of what passes</li>
+<li>📋 <strong>Task tracker for humans and agents</strong>: REST, CLI and MCP over one service layer; effort tracked in minutes for people and in tokens for agents</li>
+<li>⏰ <strong>Deferred jobs and pipelines</strong>: a Postgres queue with <code>SKIP LOCKED</code> and leases, cron, step graphs with approval from the phone</li>
+<li>🎙 <strong>Speech</strong>: faster-whisper on CUDA, two-track call transcription, video transcription via RabbitMQ</li>
+</ul>
+<p><code>Python</code> <code>FastAPI</code> <code>PostgreSQL</code> <code>Go</code> <code>Java</code> <code>Android</code> <code>RabbitMQ</code> <code>MCP</code> <code>Claude</code> <code>Codex</code> <code>faster-whisper</code></p>
+<h3 id="document-builder-pet">📄 Document builder · <code>pet</code></h3>
+<p><em>Python · FastAPI · Vue · PDF</em></p>
+<ul>
+<li>Template editor with variable substitution and preview mode, a custom DSL, a separate PDF rendering worker, a CRM part</li>
+</ul>
+<p><code>Python</code> <code>FastAPI</code> <code>Vue</code> <code>MinIO</code> <code>PDF</code></p>
+<h3 id="vitawalls-green-zone-management-pet">🌿 Vitawalls — green zone management · <code>pet</code></h3>
+<p><em>Python · FastAPI · Vue · IoT</em></p>
+<ul>
+<li>Organizations, users and zones; device and sensor binding, measurement storage, an admin panel, e2e tests</li>
+</ul>
+<p><code>Python</code> <code>FastAPI</code> <code>PostgreSQL</code> <code>MinIO</code> <code>Docker</code></p>
+<hr />
+<h2 id="education">🎓 Education</h2>
+<table>
+<thead>
+<tr>
+<th>Year</th>
+<th>Institution</th>
+<th>Field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2018</td>
+<td>Pacific National University, Khabarovsk</td>
+<td>Software for computers and automated systems (incomplete higher education)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="languages">🌍 Languages</h2>
+<p>🇷🇺 <strong>Russian</strong> — native  ·  🇬🇧 <strong>English</strong> — B2</p>
+<hr />
+<h2 id="more">🔎 More</h2>
+<p><strong>Teaching</strong>: I tutor Python, Django, FastAPI, SQL and algorithms — I can explain OOP using chairs and tables.</p>
+<p><strong>Work format:</strong> Remote · occasional business trips</p>
+<hr />
+<h2 id="contacts">📞 Contacts</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Email</strong></td>
+<td><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#110;&#101;&#108;&#105;&#110;&#101;&#108;&#97;&#116;&#101;&#114;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#111;&#110;&#101;&#108;&#105;&#110;&#101;&#108;&#97;&#116;&#101;&#114;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></td>
+</tr>
+<tr>
+<td><strong>Telegram</strong></td>
+<td><a href="https://t.me/onelinelater">@onelinelater</a></td>
+</tr>
+<tr>
+<td><strong>GitHub</strong></td>
+<td><a href="https://github.com/onelinelater">github.com/onelinelater</a></td>
+</tr>
+<tr>
+<td><strong>GitLab</strong></td>
+<td><a href="https://gitlab.com/onelinelater">gitlab.com/onelinelater</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Last updated: October 2026</em></p>
+  </article>
+  <footer>Built from the profile README · <a href="https://github.com/onelinelater/onelinelater">github.com/onelinelater/onelinelater</a></footer>
+</section>
+</main>
+<script type="application/json" id="page-meta">{"ru": {"title": "Иван Кузнецов — Senior Python Developer · Backend · агентные системы на LLM", "name": "Иван Кузнецов"}, "en": {"title": "Ivan Kuznetsov — Senior Python Developer · Backend · LLM agent systems", "name": "Ivan Kuznetsov"}}</script>
+<script>
+(function () {
+  var pages = Array.prototype.slice.call(document.querySelectorAll('.page'));
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('.switch button'));
+  var meta = JSON.parse(document.getElementById('page-meta').textContent);
+  var brand = document.querySelector('.brand-name');
+
+  function apply(lang, remember) {
+    if (!meta[lang]) { lang = 'ru'; }
+    pages.forEach(function (p) { p.hidden = p.dataset.lang !== lang; });
+    buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.lang === lang)); });
+    document.documentElement.lang = lang;
+    document.title = meta[lang].title;
+    brand.textContent = meta[lang].name;
+    if (remember) {
+      try { localStorage.setItem('resume-lang', lang); } catch (e) { /* приватный режим */ }
+      var url = new URL(window.location.href);
+      url.searchParams.set('lang', lang);
+      history.replaceState(null, '', url);
+    }
+  }
+
+  var stored = null;
+  try { stored = localStorage.getItem('resume-lang'); } catch (e) { /* приватный режим */ }
+  apply(new URLSearchParams(window.location.search).get('lang') || stored || navigator.language.slice(0, 2), false);
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () { apply(b.dataset.lang, true); });
+  });
+})();
+</script>
+</body>
+</html>

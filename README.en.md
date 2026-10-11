@@ -1,7 +1,7 @@
 <img src="avatar.jpg" alt="Ivan Kuznetsov" align="right" width="150">
 
 <!-- lang-switch -->
-[![Русский](https://img.shields.io/badge/%F0%9F%87%B7%F0%9F%87%BA_Русский-8a8580?style=flat)](README.md) [![English](https://img.shields.io/badge/%F0%9F%87%AC%F0%9F%87%A7_English-a8481c?style=flat)](README.en.md)
+[![Русский](https://img.shields.io/badge/%F0%9F%87%B7%F0%9F%87%BA_Русский-8a8580?style=flat)](README.md) [![English](https://img.shields.io/badge/%F0%9F%87%AC%F0%9F%87%A7_English-a8481c?style=flat)](README.en.md) [![Site](https://img.shields.io/badge/%F0%9F%8C%90_Website-2f4858?style=flat)](https://onelinelater.github.io/onelinelater/)
 
 # Ivan Kuznetsov
 
@@ -20,7 +20,7 @@
 
 | 🏆 Experience | 🏢 Companies | 🧩 Own platform | 💎 Level | 💰 Expectations |
 |:---:|:---:|:---:|:---:|:---:|
-| **9+ years** | KPMG · BST · BARS Group · Navio | **14 services · 1000+ commits** | **Senior** | **250,000 ₽/month** |
+| **9+ years** | KPMG · BST · BARS Group · Navio | **14 services · 1000+ commits** | **Senior** | **300,000 ₽/month** |
 
 ---
 

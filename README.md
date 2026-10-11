@@ -1,7 +1,7 @@
 <img src="avatar.jpg" alt="Иван Кузнецов" align="right" width="150">
 
 <!-- lang-switch -->
-[![Русский](https://img.shields.io/badge/%F0%9F%87%B7%F0%9F%87%BA_Русский-a8481c?style=flat)](README.md) [![English](https://img.shields.io/badge/%F0%9F%87%AC%F0%9F%87%A7_English-8a8580?style=flat)](README.en.md)
+[![Русский](https://img.shields.io/badge/%F0%9F%87%B7%F0%9F%87%BA_Русский-a8481c?style=flat)](README.md) [![English](https://img.shields.io/badge/%F0%9F%87%AC%F0%9F%87%A7_English-8a8580?style=flat)](README.en.md) [![Site](https://img.shields.io/badge/%F0%9F%8C%90_Сайт-2f4858?style=flat)](https://onelinelater.github.io/onelinelater/)
 
 # Иван Кузнецов
 
@@ -20,7 +20,7 @@
 
 | 🏆 Опыт | 🏢 Компании | 🧩 Своя платформа | 💎 Уровень | 💰 Ожидания |
 |:---:|:---:|:---:|:---:|:---:|
-| **9+ лет** | KPMG · БСТ · БАРС Груп · Navio | **14 сервисов · 1000+ коммитов** | **Senior** | **250 000 ₽/мес** |
+| **9+ лет** | KPMG · БСТ · БАРС Груп · Navio | **14 сервисов · 1000+ коммитов** | **Senior** | **300 000 ₽/мес** |
 
 ---
 

@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESCRIPTION}}">
+<meta property="og:title" content="{{TITLE}}">
+<meta property="og:description" content="{{DESCRIPTION}}">
+<meta property="og:type" content="profile">
+<meta property="og:image" content="avatar.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f6f8b'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='28' font-weight='600' fill='%23fff' text-anchor='middle'%3EIK%3C/text%3E%3C/svg%3E">
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f7f9fa;
+  --surface: #ffffff;
+  --text: #182026;
+  --muted: #5d6a73;
+  --line: #dde4e8;
+  --accent: #1f6f8b;
+  --accent-soft: #e2f0f4;
+  --code-bg: #eef3f5;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #11161a;
+    --surface: #182027;
+    --text: #e4eaee;
+    --muted: #93a1aa;
+    --line: #26323a;
+    --accent: #5fb7d4;
+    --accent-soft: #1b2e36;
+    --code-bg: #1a242b;
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: .7rem clamp(1rem, 4vw, 3rem);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.brand { font-weight: 600; }
+.brand span { color: var(--muted); font-weight: 400; }
+.switch { display: flex; gap: .2rem; padding: .2rem; background: var(--code-bg); border-radius: 999px; }
+.switch button {
+  border: 0; cursor: pointer; font: inherit; font-size: .9rem; font-weight: 600;
+  padding: .35rem .95rem; border-radius: 999px; color: var(--muted); background: transparent;
+}
+.switch button[aria-pressed="true"] { background: var(--surface); color: var(--accent); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+.switch button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+main { max-width: 62rem; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 3rem) 2rem; }
+.page[hidden] { display: none; }
+.hero {
+  display: flex; gap: clamp(1rem, 4vw, 2rem); align-items: center;
+  padding: clamp(2rem, 6vw, 3.5rem) 0 1.5rem; border-bottom: 1px solid var(--line);
+}
+.avatar {
+  flex: none; width: clamp(88px, 18vw, 132px); height: auto; aspect-ratio: 1;
+  border-radius: 50%; object-fit: cover; border: 3px solid var(--surface);
+  box-shadow: 0 0 0 1px var(--line), 0 6px 20px rgba(0,0,0,.08);
+}
+.hero h1 {
+  margin: 0; font-size: clamp(1.9rem, 6vw, 3rem); line-height: 1.1; letter-spacing: -.02em;
+  font-family: "Iowan Old Style", Georgia, "Times New Roman", serif; font-weight: 600;
+}
+.headline { margin: .6rem 0 0; font-size: clamp(1rem, 2.6vw, 1.2rem); color: var(--accent); font-weight: 600; }
+.tagline { margin: .4rem 0 0; color: var(--muted); }
+.contacts { list-style: none; display: flex; flex-wrap: wrap; gap: .3rem 1.4rem; margin: 1rem 0 0; padding: 0; font-size: .95rem; }
+.contacts .k { color: var(--muted); margin-right: .4rem; }
+.contacts a { color: var(--text); text-decoration-color: var(--line); text-underline-offset: 3px; }
+.contacts a:hover { color: var(--accent); }
+.sections {
+  display: flex; gap: 1rem; overflow-x: auto; padding: .9rem 0; margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line); font-size: .875rem; scrollbar-width: none;
+}
+.sections::-webkit-scrollbar { display: none; }
+.sections a { color: var(--muted); text-decoration: none; white-space: nowrap; }
+.sections a:hover { color: var(--accent); }
+.resume h2 {
+  margin: 2.6rem 0 1rem; padding-top: 1.4rem; border-top: 1px solid var(--line);
+  font-family: "Iowan Old Style", Georgia, serif; font-size: 1.5rem; letter-spacing: -.01em;
+}
+.resume > h2:first-child { margin-top: .8rem; padding-top: 0; border-top: 0; }
+.resume h3 { margin: 2rem 0 .3rem; font-size: 1.15rem; }
+.resume h3 + p { margin-top: 0; color: var(--muted); font-size: .95rem; }
+.resume ul { padding-left: 1.2rem; }
+.resume li { margin: .35rem 0; }
+.resume a { color: var(--accent); text-underline-offset: 2px; }
+.resume table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .95rem; display: block; overflow-x: auto; }
+.resume th, .resume td { border: 1px solid var(--line); padding: .5rem .7rem; text-align: left; }
+.resume th { background: var(--code-bg); }
+.resume pre {
+  background: var(--code-bg); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 1rem; overflow-x: auto; font-size: .85rem; line-height: 1.5;
+}
+.resume :not(pre) > code {
+  background: var(--accent-soft); color: var(--accent); padding: .12em .4em;
+  border-radius: 5px; font-size: .85em;
+}
+/* Линии из markdown не нужны: разделы уже отбиты линией у h2. */
+.resume hr { display: none; }
+footer { margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
+footer a { color: inherit; }
+@media (max-width: 640px) {
+  .hero { flex-direction: column; align-items: flex-start; }
+  .resume pre { font-size: .72rem; }
+}
+@media print {
+  .topbar, .sections, footer { display: none; }
+  body { background: #fff; color: #000; font-size: 10.5pt; }
+  .resume pre { background: #f6f6f6; }
+  .resume h2 { page-break-after: avoid; }
+  .resume li, .resume h3 { page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><span class="brand-name">Иван Кузнецов</span> <span>· CV</span></div>
+  <div class="switch" role="group" aria-label="Language / Язык">
+    <button type="button" data-lang="ru" aria-pressed="true">RU</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </div>
+</div>
+<main>
+{{PAGES}}
+</main>
+<script type="application/json" id="page-meta">{{META}}</script>
+<script>
+(function () {
+  var pages = Array.prototype.slice.call(document.querySelectorAll('.page'));
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('.switch button'));
+  var meta = JSON.parse(document.getElementById('page-meta').textContent);
+  var brand = document.querySelector('.brand-name');
+
+  function apply(lang, remember) {
+    if (!meta[lang]) { lang = 'ru'; }
+    pages.forEach(function (p) { p.hidden = p.dataset.lang !== lang; });
+    buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.lang === lang)); });
+    document.documentElement.lang = lang;
+    document.title = meta[lang].title;
+    brand.textContent = meta[lang].name;
+    if (remember) {
+      try { localStorage.setItem('resume-lang', lang); } catch (e) { /* приватный режим */ }
+      var url = new URL(window.location.href);
+      url.searchParams.set('lang', lang);
+      history.replaceState(null, '', url);
+    }
+  }
+
+  var stored = null;
+  try { stored = localStorage.getItem('resume-lang'); } catch (e) { /* приватный режим */ }
+  apply(new URLSearchParams(window.location.search).get('lang') || stored || navigator.language.slice(0, 2), false);
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () { apply(b.dataset.lang, true); });
+  });
+})();
+</script>
+</body>
+</html>
