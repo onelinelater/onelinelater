@@ -1,5 +1,8 @@
 <img src="avatar.jpg" alt="Иван Кузнецов" align="right" width="150">
 
+<!-- lang-switch -->
+[![Русский](https://img.shields.io/badge/%F0%9F%87%B7%F0%9F%87%BA_Русский-a8481c?style=flat)](README.md) [![English](https://img.shields.io/badge/%F0%9F%87%AC%F0%9F%87%A7_English-8a8580?style=flat)](README.en.md)
+
 # Иван Кузнецов
 
 ## Senior Python Developer · Backend · агентные системы на LLM
@@ -25,7 +28,7 @@
 
 **Python-разработчик** с 2017 года: прошёл путь от Junior на Node.js до Senior, который ведёт ревью, собеседует разработчиков и в одиночку закрывает backend клиентского проекта.
 
-**Backend** — основная специализация: FastAPI, Flask, Django, aiohttp, Tornado. Событийная обработка на Kafka и RabbitMQ (FastStream, aio-pika), устойчивые длительные процессы и Saga на Temporal. PostgreSQL на уровне планов запросов: `EXPLAIN ANALYZE`, индексы, а в своих проектах — `LISTEN/NOTIFY` и очереди на `SKIP LOCKED`.
+**Backend** — основная специализация: FastAPI, Flask, Django, aiohttp, Tornado. Событийная обработка на Kafka и RabbitMQ (FastStream, pika), устойчивые длительные процессы и Saga на Temporal. PostgreSQL на уровне планов запросов: `EXPLAIN ANALYZE`, индексы, а в своих проектах — `LISTEN/NOTIFY` и очереди на `SKIP LOCKED`.
 
 **Качество**: тесты на критичные модули, Repository и чистая архитектура там, где они окупаются, SonarQube и ревью.
 
